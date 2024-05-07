@@ -2,7 +2,7 @@
 	"type": "module",
 	"name": "wallet-clone",
 	"version": "1.0.0",
-	"description": "",
+	"description": "This is meant to be a clone of an App. I code it for fun",
 	"main": "src/index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -10,8 +10,10 @@
 		"dev": "nodemon src/index.js",
 		"debug": "nodemon --inspect src/index.js"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"finance"
+	],
+	"author": "cdramirez@unal.edu.co",
 	"license": "ISC",
 	"devDependencies": {
 		"eslint": "^9.2.0",
