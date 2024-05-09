@@ -1,11 +1,19 @@
 import express from "express";
 import { config } from "./config/config.js";
+import { sequelize } from "./utils/sequelize.js";
 
 const app = express();
 const port = config.port || 3000;
 
-app.get("/", (req, res) => {
-	res.send("Backend working");
+app.get("/", async (req, res) => {
+	try {
+		await sequelize.authenticate();
+		console.log("Connection has been established successfully.");
+		res.send("Backend working");
+	} catch (error) {
+		console.error("Unable to connect to the database:", error);
+		res.send("db error");
+	}
 });
 
 app.listen(port, () => {
