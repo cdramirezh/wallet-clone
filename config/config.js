@@ -1,5 +1,5 @@
-import dbUrl from "../src/utils/dbUrl";
-import { config } from "../src/config/config";
+import dbUrl from "../src/utils/dbUrl.js";
+import { config } from "../src/config/config.js";
 
 const ENGINE = config.ENGINE;
 
