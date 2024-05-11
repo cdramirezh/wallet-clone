@@ -17,6 +17,7 @@
 	"author": "cdramirez@unal.edu.co",
 	"license": "ISC",
 	"devDependencies": {
+		"babel-register": "^6.26.0",
 		"eslint": "^9.2.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-prettier": "^5.1.3",
