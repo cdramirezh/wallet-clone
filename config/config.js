@@ -1,7 +1,7 @@
 import dbUrl from "../src/utils/dbUrl.js";
 import { config } from "../src/config/config.js";
 
-const ENGINE = config.ENGINE;
+const ENGINE = config.dbEngine;
 
 export default {
 	development: {
