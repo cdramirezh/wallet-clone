@@ -1,6 +1,7 @@
 import express from "express";
 import { config } from "./config/config.js";
 import { sequelize } from "./utils/sequelize.js";
+import { setUpRouter } from "./routes/router.js";
 
 const app = express();
 const port = config.port || 3000;
@@ -15,6 +16,8 @@ app.get("/", async (req, res) => {
 		res.send("db error");
 	}
 });
+
+setUpRouter(app);
 
 app.listen(port, () => {
 	console.log(`Backend started on port ${port}`);
