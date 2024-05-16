@@ -25,6 +25,7 @@ export default (sequelize) => {
 	User.init(UserSchema, {
 		sequelize,
 		modelName: "User",
+		tableName: USER_TABLE,
 		timestamps: false,
 	});
 	return User;

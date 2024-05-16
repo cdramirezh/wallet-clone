@@ -40,6 +40,7 @@ export default (sequelize) => {
 	Label.init(LabelSchema, {
 		sequelize,
 		modelName: "Label",
+		tableName: LABEL_TABLE,
 		timestamps: false,
 	});
 	return Label;
