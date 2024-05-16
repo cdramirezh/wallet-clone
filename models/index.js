@@ -21,7 +21,7 @@ export const setUpModels = async (sequelize) => {
 			// Init the model and return the model class
 			.default(sequelize);
 		// Store model for executing it's associate method later
-		models[module.modelName] = model;
+		models[model.name] = model;
 	});
 
 	// Set up model relationships
