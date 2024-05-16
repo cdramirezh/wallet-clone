@@ -6,7 +6,7 @@ export class UserService {
 	constructor() {}
 
 	async find() {
-		const users = await User.findAll();
+		const users = await User.findAll({ include: "labels" });
 		return users;
 	}
 }
