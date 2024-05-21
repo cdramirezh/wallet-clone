@@ -17,6 +17,7 @@ app.get("/", async (req, res) => {
 	}
 });
 
+app.use(express.json());
 setUpRouter(app);
 
 app.listen(port, () => {
