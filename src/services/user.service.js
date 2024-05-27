@@ -1,3 +1,4 @@
+import Boom from "@hapi/boom";
 import { sequelize } from "../utils/sequelize.js";
 const { models } = sequelize;
 const { User } = models;
@@ -12,6 +13,7 @@ export class UserService {
 
 	async findOne(id) {
 		const user = await User.findByPk(id);
+		if (!user) throw Boom.notFound("user not found");
 		return user;
 	}
 

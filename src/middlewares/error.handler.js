@@ -10,6 +10,13 @@ export const logError = (err, req, res, next) => {
 	next(err);
 };
 
+export const handleBoomError = (err, req, res, next) => {
+	if (err.isBoom) {
+		const { output } = err;
+		res.status(output?.statusCode).json(output?.payload);
+	} else next(err);
+};
+
 export const handleError = (err, req, res, next) => {
 	const { name, message } = err;
 	if (err) res.status(500).json({ name, message });
