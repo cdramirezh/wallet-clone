@@ -1,7 +1,7 @@
 "use strict";
 import { Model, DataTypes } from "sequelize";
 
-export const USER_TABLE = "Users";
+export const USER_TABLE = "users";
 
 export const UserSchema = {
 	id: {
