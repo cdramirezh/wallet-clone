@@ -4,7 +4,12 @@ import { Model, DataTypes } from "sequelize";
 export const USER_TABLE = "Users";
 
 export const UserSchema = {
-	id: { primaryKey: true, type: DataTypes.UUID, allowNull: false },
+	id: {
+		primaryKey: true,
+		type: DataTypes.UUID,
+		allowNull: false,
+		defaultValue: DataTypes.UUIDV4,
+	},
 	firstName: { type: DataTypes.STRING, allowNull: false },
 	lastName: DataTypes.STRING,
 	email: { allowNull: false, type: DataTypes.STRING },
