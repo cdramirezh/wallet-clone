@@ -12,7 +12,7 @@ export const UserSchema = {
 	},
 	firstName: { type: DataTypes.STRING, allowNull: false },
 	lastName: DataTypes.STRING,
-	email: { allowNull: false, type: DataTypes.STRING },
+	email: { allowNull: false, type: DataTypes.STRING, unique: true },
 };
 
 export default (sequelize) => {
