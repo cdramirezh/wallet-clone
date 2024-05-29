@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "./config/config.js";
 import { sequelize } from "./utils/sequelize.js";
 import { setUpRouter } from "./routes/router.js";
+import { setUpCors } from "./middlewares/cors.handler.js";
 import {
 	handleBoomError,
 	handleError,
@@ -10,6 +11,8 @@ import {
 
 const app = express();
 const port = config.port || 3000;
+
+app.use(setUpCors);
 
 app.get("/", async (req, res) => {
 	try {
