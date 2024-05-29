@@ -8,11 +8,13 @@ import {
 	handleError,
 	logError,
 } from "./middlewares/error.handler.js";
+import { setUpHelmet } from "./middlewares/helmet.handler.js";
 
 const app = express();
 const port = config.port || 3000;
 
 app.use(setUpCors);
+app.use(setUpHelmet);
 
 app.get("/", async (req, res) => {
 	try {
