@@ -17,6 +17,12 @@ export class UserService {
 		return user;
 	}
 
+	async findByEmail(email) {
+		const user = await User.findOne({ where: { email } });
+		if (!user) throw Boom.notFound("user not found");
+		return user;
+	}
+
 	async create(user) {
 		const newUser = await User.create(user);
 		return newUser;

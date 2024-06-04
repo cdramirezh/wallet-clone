@@ -11,4 +11,5 @@ export const config = {
 	dbEngine: process.env.DB_ENGINE,
 	dbUrl: process.env.DATABASE_URL,
 	dbPrivateUrl: process.env.DATABASE_PRIVATE_URL,
+	jwtSecret: process.env.JWT_SECRET,
 };
