@@ -23,8 +23,9 @@ export default (sequelize) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			const { Label } = models;
+			const { Label, Password } = models;
 			this.hasMany(Label, { as: "labels", foreignKey: "userId" });
+			this.hasOne(Password, { as: "password", foreignKey: "userId" });
 		}
 	}
 	User.init(UserSchema, {
