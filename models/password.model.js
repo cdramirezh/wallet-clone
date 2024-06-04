@@ -25,7 +25,7 @@ export default (sequelize) => {
 	class Password extends Model {
 		static associate(models) {
 			const { User } = models;
-			this.belongsTo(User);
+			this.belongsTo(User, { foreignKey: "userId" });
 		}
 	}
 	Password.init(PasswordSchema, {
