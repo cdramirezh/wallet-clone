@@ -3,6 +3,7 @@ import chalk from "chalk";
 export const logError = (err, req, res, next) => {
 	const PRINT_WHOLE_ERROR_OBJ = false;
 
+	// eslint-disable-next-line no-console
 	console.error(
 		chalk.red(PRINT_WHOLE_ERROR_OBJ ? JSON.stringify(err, null, 2) : err),
 	);

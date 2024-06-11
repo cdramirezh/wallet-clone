@@ -19,9 +19,11 @@ app.use(setUpHelmet);
 app.get("/", async (req, res) => {
 	try {
 		await sequelize.authenticate();
+		// eslint-disable-next-line no-console
 		console.log("Connection has been established successfully.");
 		res.send("Backend working");
 	} catch (error) {
+		// eslint-disable-next-line no-console
 		console.error("Unable to connect to the database:", error);
 		res.send("db error");
 	}
@@ -35,5 +37,6 @@ app.use(handleBoomError);
 app.use(handleError);
 
 app.listen(port, () => {
+	// eslint-disable-next-line no-console
 	console.log(`Backend started on port ${port}`);
 });
