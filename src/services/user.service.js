@@ -1,7 +1,10 @@
 import Boom from "@hapi/boom";
+import { PasswordService } from "./password.service.js";
 import { sequelize } from "../utils/sequelize.js";
+
 const { models } = sequelize;
 const { User } = models;
+const passwordService = new PasswordService();
 
 export class UserService {
 	constructor() {}
@@ -24,7 +27,10 @@ export class UserService {
 	}
 
 	async create(user) {
+		const password = user.password;
+		delete user.password;
 		const newUser = await User.create(user);
+		await passwordService.create(newUser.id, password);
 		return newUser;
 	}
 
