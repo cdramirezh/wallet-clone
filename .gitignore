@@ -147,6 +147,8 @@ dist
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+# Used for VSCode to tell ESLint where config is
+!.vscode/settings.json
 
 # Local History for Visual Studio Code
 .history/

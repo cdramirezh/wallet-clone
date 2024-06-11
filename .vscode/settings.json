@@ -1,0 +1,7 @@
+{
+	"workbench.colorCustomizations": {},
+	"eslint.workingDirectories": ["./"],
+	"eslint.options": {
+		"overrideConfigFile": "./.eslintrc.json"
+	}
+}
