@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import { sequelize } from "../utils/sequelize.js";
 import { UserService } from "./user.service.js";
 import { config } from "../config/config.js";
+import { fillRecoveryEmail } from "../email.templates/recovery.js";
+import { transporter } from "../utils/mail.js";
 const { models } = sequelize;
 const { Password } = models;
 
@@ -33,5 +35,26 @@ export class AuthService {
 		};
 		const token = jwt.sign(payload, config.jwtSecret);
 		return token;
+	}
+
+	async sendRecoveryEmail(user) {
+		const payload = { sub: user.id };
+		const token = jwt.sign(payload, config.jwtSecretRecovery, { expiresIn: "15min" });
+		const link = `https://el-fontend.com/recovery?token=${token}`;
+		const emailBody = fillRecoveryEmail({
+			id: user.id,
+			firstName: user.firstName,
+			lastName: user.lastName,
+			link,
+			token,
+		});
+
+		const info = await transporter.sendMail({
+			to: user.email,
+			subject: "Recover your password",
+			html: emailBody,
+		});
+
+		return info;
 	}
 }

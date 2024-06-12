@@ -31,3 +31,7 @@ export const loginSchema = Joi.object({
 	username: email.required(),
 	password: password.required(),
 });
+
+export const recoveryPasswordSchema = Joi.object({
+	email: email.required(),
+});
