@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-// import { Boom } from "@hapi/boom";
+import { Boom } from "@hapi/boom";
 import { sequelize } from "../utils/sequelize.js";
 
 const { models } = sequelize;
@@ -8,12 +8,11 @@ const { Password } = models;
 export class PasswordService {
 	constructor() {}
 
-	// TO DO
-	// async findOne(userId) {
-	// const credentials = await Password.findByPk(userId);
-	// if (!credentials) throw Boom.notFound("please reset password");
-	// return credentials;
-	// }
+	async findOne(userId) {
+		const credentials = await Password.findByPk(userId);
+		if (!credentials) throw Boom.notFound("please reset password");
+		return credentials;
+	}
 
 	async create(userId, password) {
 		const hash = await bcrypt.hash(password, 5);
