@@ -36,7 +36,8 @@ export class UserService {
 
 	async update(id, changes) {
 		const user = await this.findOne(id);
-		return await user.update(changes);
+		const updatedUser = await user.update(changes);
+		return updatedUser;
 	}
 
 	async delete(id) {
