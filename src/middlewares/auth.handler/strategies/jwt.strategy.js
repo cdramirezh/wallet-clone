@@ -25,4 +25,4 @@ const createJwtStrategy = (secretOrKey) => {
 	});
 };
 
-export const JwtStrategyReset = createJwtStrategy(config.jwtSecretRecovery);
+export const JwtStrategyReset = createJwtStrategy(config.jwtSecretReset);

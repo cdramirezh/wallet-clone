@@ -32,7 +32,9 @@ export class AuthService {
 
 	async sendRecoveryEmail(user) {
 		const payload = { sub: user.id };
-		const token = jwt.sign(payload, config.jwtSecretRecovery, { expiresIn: "15min" });
+		const token = jwt.sign(payload, config.jwtSecretReset, {
+			expiresIn: "15min",
+		});
 		const link = `https://el-fontend.com/recovery?token=${token}`;
 		const emailBody = fillRecoveryEmail({
 			id: user.id,
