@@ -15,13 +15,13 @@ export class UserService {
 	}
 
 	async findOne(id) {
-		const user = await User.findByPk(id);
+		const user = await User.findByPk(id, { include: "role" });
 		if (!user) throw Boom.notFound("user not found");
 		return user;
 	}
 
 	async findByEmail(email) {
-		const user = await User.findOne({ where: { email } });
+		const user = await User.findOne({ where: { email }, include: "role" });
 		if (!user) throw Boom.notFound("user not found");
 		return user;
 	}

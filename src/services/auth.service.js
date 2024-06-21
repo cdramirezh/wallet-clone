@@ -23,8 +23,11 @@ export class AuthService {
 	}
 
 	signUserToken(user) {
+		const role = user?.role?.name;
+		if (!role) throw Boom.badImplementation("need role to sing token");
 		const payload = {
 			sub: user.id,
+			role,
 		};
 		const token = jwt.sign(payload, config.jwtSecret);
 		return token;
