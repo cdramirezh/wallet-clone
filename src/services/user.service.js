@@ -10,12 +10,12 @@ export class UserService {
 	constructor() {}
 
 	async find() {
-		const users = await User.findAll({ include: "labels" });
+		const users = await User.findAll();
 		return users;
 	}
 
 	async findOne(id) {
-		const user = await User.findByPk(id, { include: "role" });
+		const user = await User.findByPk(id, { include: ["role", "labels"] });
 		if (!user) throw Boom.notFound("user not found");
 		return user;
 	}
