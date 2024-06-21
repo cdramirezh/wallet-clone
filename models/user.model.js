@@ -13,6 +13,15 @@ export const UserSchema = {
 	firstName: { type: DataTypes.STRING, allowNull: false },
 	lastName: DataTypes.STRING,
 	email: { allowNull: false, type: DataTypes.STRING, unique: true },
+	roleId: {
+		field: "role_id",
+		allowNull: false,
+		defaultValue: "bdb2e6ee-6d68-419d-8516-81d860f070ba",
+		type: DataTypes.UUID,
+		references: { model: "roles", key: "id" },
+		onUpdate: "CASCADE",
+		onDelete: "SET DEFAULT",
+	},
 };
 
 export default (sequelize) => {
@@ -23,9 +32,10 @@ export default (sequelize) => {
 		 * The `models/index` file will call this method automatically.
 		 */
 		static associate(models) {
-			const { Label, Password } = models;
+			const { Label, Password, Role } = models;
 			this.hasMany(Label, { as: "labels", foreignKey: "userId" });
 			this.hasOne(Password, { as: "password", foreignKey: "userId" });
+			this.belongsTo(Role, { as: "role" });
 		}
 	}
 	User.init(UserSchema, {
