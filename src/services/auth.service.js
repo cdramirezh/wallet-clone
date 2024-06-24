@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { PasswordService } from "./password.service.js";
 import { UserService } from "./user.service.js";
 import { config } from "../config/config.js";
-import { fillRecoveryEmail } from "../email.templates/recovery.js";
+import { fillEmail } from "../email.templates/fillEmail.js";
 import { transporter } from "../utils/mail.js";
 
 const userService = new UserService();
@@ -39,7 +39,7 @@ export class AuthService {
 			expiresIn: "15min",
 		});
 		const link = `https://el-fontend.com/recovery?token=${token}`;
-		const emailBody = fillRecoveryEmail({
+		const emailBody = await fillEmail("password.recovery.html", {
 			id: user.id,
 			firstName: user.firstName,
 			lastName: user.lastName,
