@@ -1,5 +1,6 @@
 import e from "express";
 import { UserService } from "../services/user.service.js";
+import { passport } from "../middlewares/auth.handler/setUpPassport.js";
 import { validateData } from "../middlewares/validate.handler.js";
 import {
 	createUserSchema,
@@ -11,14 +12,19 @@ import {
 const router = e.Router();
 const service = new UserService();
 
-router.get("/", async (req, res, next) => {
-	try {
-		const usuarios = await service.find();
-		res.send(usuarios);
-	} catch (error) {
-		next(error);
-	}
-});
+router.get(
+	"/",
+	passport.authenticate("jwt-default", { session: false }),
+	// protect this route. Must be accesible for admins only. This requires to add 'Role' to the user table
+	async (req, res, next) => {
+		try {
+			const usuarios = await service.find();
+			res.json(usuarios);
+		} catch (error) {
+			next(error);
+		}
+	},
+);
 
 router.get(
 	"/:id",
