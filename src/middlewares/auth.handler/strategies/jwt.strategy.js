@@ -4,7 +4,7 @@ import { UserService } from "../../../services/user.service.js";
 
 const userService = new UserService();
 
-const createJwtStrategy = (secretOrKey) => {
+const createJwtStrategy = (secretOrKey, doNotQueryDB) => {
 	var options = {
 		jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 		secretOrKey,
@@ -14,7 +14,7 @@ const createJwtStrategy = (secretOrKey) => {
 	return new Strategy(options, async (jwtPayload, done) => {
 		try {
 			const id = jwtPayload.sub;
-			const user = await userService.findOne(id);
+			const user = doNotQueryDB ? jwtPayload : await userService.findOne(id);
 			if (!user) return done(null, false);
 			// 'done' mete el segundo argumento dentro request.user.
 			else return done(null, user);
@@ -26,4 +26,5 @@ const createJwtStrategy = (secretOrKey) => {
 };
 
 export const JwtStrategyDefault = createJwtStrategy(config.jwtSecret);
+export const JwtStrategyNoDBQuery = createJwtStrategy(config.jwtSecret, true);
 export const JwtStrategyReset = createJwtStrategy(config.jwtSecretReset);

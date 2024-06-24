@@ -8,14 +8,18 @@ import {
 	partiallyUpdateUserSchema,
 	updateUserSchema,
 } from "../schemas/user.schema.js";
+import {
+	actions,
+	checkPermissions,
+} from "../middlewares/permissions.handler.js";
 
 const router = e.Router();
 const service = new UserService();
 
 router.get(
 	"/",
-	passport.authenticate("jwt-default", { session: false }),
-	// protect this route. Must be accesible for admins only. This requires to add 'Role' to the user table
+	passport.authenticate("jwt-no-db-query", { session: false }),
+	checkPermissions(actions.readAny, "user"),
 	async (req, res, next) => {
 		try {
 			const usuarios = await service.find();
