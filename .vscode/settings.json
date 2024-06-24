@@ -3,5 +3,8 @@
 	"eslint.workingDirectories": ["./"],
 	"eslint.options": {
 		"overrideConfigFile": "./.eslintrc.json"
-	}
+	},
+	"cSpell.words": [
+		"accesscontrol"
+	]
 }
