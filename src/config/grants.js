@@ -14,6 +14,11 @@ export const grantsObject = {
 		},
 	},
 	user: {
+		user: {
+			"read:own": ["*"],
+			"update:own": ["*"],
+			"delete:own": ["*"],
+		},
 		label: {
 			"create:own": ["*"],
 			"read:own": ["*"],
