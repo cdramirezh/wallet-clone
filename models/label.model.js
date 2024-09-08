@@ -4,7 +4,12 @@ import { Model, DataTypes } from "sequelize";
 export const LABEL_TABLE = "labels";
 
 export const LabelSchema = {
-	id: { primaryKey: true, type: DataTypes.UUID, allowNull: false },
+	id: {
+		primaryKey: true,
+		type: DataTypes.UUID,
+		allowNull: false,
+		defaultValue: DataTypes.UUIDV4,
+	},
 	name: { type: DataTypes.STRING, allowNull: false },
 	color: { type: DataTypes.STRING },
 	autoAssignToNewRecords: {
