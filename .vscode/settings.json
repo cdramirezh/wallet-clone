@@ -5,6 +5,7 @@
 		"overrideConfigFile": "./.eslintrc.json"
 	},
 	"cSpell.words": [
-		"accesscontrol"
+		"accesscontrol",
+		"UUIDV"
 	]
 }
